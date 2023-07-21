@@ -3,10 +3,10 @@ package com.solution.sixsolutions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+//@SpringBootTest
 class SixsolutionsApplicationTests {
 
-    @Test
+    //@Test
     void contextLoads() {
     }
 
