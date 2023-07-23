@@ -28,7 +28,7 @@ import java.util.Date;
 @Table(name = "solution")
 public class Solution {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String solutionName;
     private String description;

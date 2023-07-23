@@ -1,7 +1,6 @@
 package com.solution.sixsolutions.entity;
 
-//import jakarta.persistence.DiscriminatorValue;
-//import jakarta.persistence.Entity;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,8 +16,6 @@ import javax.persistence.Entity;
 @ToString
 @DiscriminatorValue("personnelle")
 public class Personnelles extends Personne{
-
-    private Long id;
     private String niveau;
-    private String Profession;
+    private String profession;
 }

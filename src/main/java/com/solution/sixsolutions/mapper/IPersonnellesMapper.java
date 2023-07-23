@@ -1,18 +1,14 @@
 package com.solution.sixsolutions.mapper;
 
-import com.solution.sixsolutions.dto.PersonneDto;
 import com.solution.sixsolutions.dto.PersonnellesDto;
 import com.solution.sixsolutions.dto.RScientifiqueDto;
 import com.solution.sixsolutions.dto.StagaireDto;
-import com.solution.sixsolutions.entity.Personne;
 import com.solution.sixsolutions.entity.Personnelles;
 import com.solution.sixsolutions.entity.RScientifique;
 import com.solution.sixsolutions.entity.Stagaire;
 
 public interface IPersonnellesMapper {
 
-//    PersonneDto fromPersonne(Personne personne);
-//    Personne fromPersonneDTO(PersonneDto personneDto);
 
     PersonnellesDto fromPersonnelles(Personnelles personnelles);
     Personnelles fromPersonnellesDTO(PersonnellesDto personnellesDto);

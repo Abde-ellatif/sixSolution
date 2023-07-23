@@ -1,7 +1,7 @@
 package com.solution.sixsolutions.service;
 
 import com.solution.sixsolutions.exception.EntrepriseException;
-import com.solution.sixsolutions.exception.ServiceException;
+import com.solution.sixsolutions.exception.ServiceeException;
 import com.solution.sixsolutions.exception.SolutionException;
 import com.solution.sixsolutions.dto.EntrepriseDto;
 import com.solution.sixsolutions.dto.ServiceeDto;
@@ -12,7 +12,6 @@ import com.solution.sixsolutions.entity.Entreprise;
 import com.solution.sixsolutions.entity.Servicee;
 import com.solution.sixsolutions.entity.Solution;
 
-//import jakarta.transaction.Transactional;
 import com.solution.sixsolutions.mapper.ISolutionMapper;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,75 +32,11 @@ import java.util.Optional;
 @Slf4j
 public class SolutionServiceImpl implements ISolutionService {
 
-    //SolutionInformationRepo solutionInformationRepo;
+
     ISolutionMapper solutionMapper;
     EntrepriseRepo entrepriseRepo;
-//    @Override
-//    public SolutionInformationDto saveContact(SolutionInformationReq solutionInformationReq) throws SolutionInformationException, EntrepriseException {
-//        Optional<Entreprise> entreprise = entrepriseRepo.findById(solutionInformationReq.getEntrepriseId());
-//        if (entreprise.isPresent()) {
-//            SolutionInformationDto solutionInformationDto = new SolutionInformationDto();
-//            solutionInformationDto.setSiegeSocial1(solutionInformationReq.getSiegeSocial1());
-//            solutionInformationDto.setSiegeSocial2(solutionInformationReq.getSiegeSocial2());
-//            solutionInformationDto.setEmail(solutionInformationReq.getEmail());
-//            solutionInformationDto.setTelephone(solutionInformationReq.getTelephone());
-//            solutionInformationDto.setFix(solutionInformationReq.getFix());
-//            solutionInformationDto.setFax(solutionInformationReq.getFax());
-////            solutionInformationDto.setEntrepriseId(solutionMapper.fromEntreprise(entreprise.get()));
-//            SolutionInformation save = solutionInformationRepo.save(solutionMapper.fromSolutionInformationDTO(solutionInformationDto));
-//            return solutionMapper.fromSolutionInformation(save);
-//        } else {
-//            throw new EntrepriseException("Entreprise not found");
-//        }
-//    }
-//
-//    @Override
-//    public SolutionInformationDto updateContact(SolutionInformationReq solutionInformationReq) throws SolutionInformationException, EntrepriseException {
-//        SolutionInformation solutionInformation = solutionInformationRepo.findById(solutionInformationReq.getId()).orElse(null);
-//
-//        if (solutionInformation == null) {
-//            throw new SolutionInformationException("SolutionInformation not found");
-//        } else {
-//            Optional<Entreprise> entreprise = entrepriseRepo.findById(solutionInformationReq.getEntrepriseId());
-//            if (entreprise.isPresent()) {
-//                SolutionInformationDto solutionInformationDto = new SolutionInformationDto();
-//                solutionInformationDto.setSiegeSocial1(solutionInformationReq.getSiegeSocial1());
-//                solutionInformationDto.setSiegeSocial2(solutionInformationReq.getSiegeSocial2());
-//                solutionInformationDto.setEmail(solutionInformationReq.getEmail());
-//                solutionInformationDto.setTelephone(solutionInformationReq.getTelephone());
-//                solutionInformationDto.setFix(solutionInformationReq.getFix());
-//                solutionInformationDto.setFax(solutionInformationReq.getFax());
-////                solutionInformationDto.setEntrepriseId(solutionMapper.fromEntreprise(entreprise.get()));
-//                SolutionInformation save = solutionInformationRepo.save(solutionMapper.fromSolutionInformationDTO(solutionInformationDto));
-//                return solutionMapper.fromSolutionInformation(save);
-//            } else {
-//                throw new EntrepriseException("Entreprise not found");
-//            }
-//
-//        }
-//    }
-//
-//    @Override
-//    public void deleteContact (Long idContact) throws SolutionInformationException {
-//            solutionInformationRepo.findById(idContact).orElseThrow(() -> {
-//                return new SolutionInformationException("SolutionInformation not found");
-//            });
-//            solutionInformationRepo.deleteById(idContact);
-//        }
-//
-//    @Override
-//    public SolutionInformationDto getContactById (Long idContact) throws SolutionInformationException {
-//            SolutionInformation solutionInformation = solutionInformationRepo.findById(idContact).orElseThrow(() -> {
-//                return new SolutionInformationException("SolutionInformation not found");
-//            });
-//            SolutionInformationDto solutionInformationDto= solutionMapper.fromSolutionInformation(solutionInformation);
-//            return solutionInformationDto;
-//        }
-//
-//    @Override
-//    public Page<SolutionInformation> getAllContact ( int page, int size){
-//            return solutionInformationRepo.findAll(PageRequest.of(page, size));
-//        }
+    private static String entrepriseNotFound="entreprise not found";
+    private static String serviceNotFound="Service not found";
 
 
     @Override
@@ -115,7 +50,7 @@ public class SolutionServiceImpl implements ISolutionService {
     public EntrepriseDto updateEntreprise (EntrepriseDto entrepriseDto) throws EntrepriseException {
         Entreprise entreprise = entrepriseRepo.findById(entrepriseDto.getId()).orElse(null);
         if (entreprise==null)
-                throw new EntrepriseException("l'entreprise que vous voulez modifier est introuvable");
+                throw new EntrepriseException(entrepriseNotFound);
             Entreprise save = entrepriseRepo.save(solutionMapper.fromEntrepriseDTO(entrepriseDto));
             return solutionMapper.fromEntreprise(save);
         }
@@ -123,7 +58,7 @@ public class SolutionServiceImpl implements ISolutionService {
     @Override
     public EntrepriseDto getEntrepriseById (Long idEntreprise) throws EntrepriseException {
         Entreprise entreprise = entrepriseRepo.findById(idEntreprise).orElseThrow(() ->
-                new EntrepriseException("L'ntreprise est introuvale"));
+                new EntrepriseException(entrepriseNotFound));
         EntrepriseDto entrepriseDto= solutionMapper.fromEntreprise(entreprise);
             return entrepriseDto;
         }
@@ -137,18 +72,17 @@ public class SolutionServiceImpl implements ISolutionService {
     public void deleteEntrepriseById (Long idEntreprise) throws EntrepriseException {
             Entreprise entreprise=entrepriseRepo.findById(idEntreprise).orElse(null);
             if (entreprise==null)
-                throw  new EntrepriseException("l'entreprise est introuvale");
+                throw  new EntrepriseException(entrepriseNotFound);
             entrepriseRepo.deleteById(idEntreprise);
         }
 
 
     ServiceRepo serviceRepo;
     @Override
-    public ServiceeDto saveService (ServiceReq serviceReq) throws ServiceException,EntrepriseException {
+    public ServiceeDto saveService (ServiceReq serviceReq) throws ServiceeException,EntrepriseException {
         Optional<Entreprise> entreprise = entrepriseRepo.findById(serviceReq.getEntrepriseId());
-        if(entreprise.isPresent())
-        {
-            ServiceeDto serviceeDto=new ServiceeDto();
+        if(entreprise.isPresent()) {
+            ServiceeDto serviceeDto = new ServiceeDto();
             serviceeDto.setNameService(serviceReq.getNameService());
             serviceeDto.setDescription(serviceReq.getDescription());
             serviceeDto.setImage(serviceReq.getImage());
@@ -158,16 +92,17 @@ public class SolutionServiceImpl implements ISolutionService {
         }
         else
         {
-            throw new EntrepriseException("Entreprise not found");
+            throw new EntrepriseException(entrepriseNotFound);
         }
+
     }
 
     @Override
-    public ServiceeDto updateService (ServiceReq serviceReq) throws ServiceException ,EntrepriseException{
+    public ServiceeDto updateService (ServiceReq serviceReq) throws ServiceeException,EntrepriseException{
         Servicee servicee = serviceRepo.findById(serviceReq.getId()).orElse(null);
 
         if(servicee==null){
-            throw new ServiceException("Bourse not found");
+            throw new ServiceeException(serviceNotFound);
         }else{
             Optional<Entreprise> entreprise = entrepriseRepo.findById(serviceReq.getEntrepriseId());
             if(entreprise.isPresent())
@@ -182,15 +117,15 @@ public class SolutionServiceImpl implements ISolutionService {
             }
             else
             {
-                throw new EntrepriseException("Entreprise not found");
+                throw new EntrepriseException(entrepriseNotFound);
             }
         }
-        }
+    }
 
     @Override
-    public ServiceeDto getServiceById (Long idService) throws ServiceException {
+    public ServiceeDto getServiceById (Long idService) throws ServiceeException {
         Servicee servicee = serviceRepo.findById(idService).orElseThrow(() ->
-                new org.hibernate.service.spi.ServiceException("Le service est introuvable"));
+                new org.hibernate.service.spi.ServiceException(serviceNotFound));
         ServiceeDto serviceeDto= solutionMapper.fromService(servicee);
         return serviceeDto;
         }
@@ -202,7 +137,7 @@ public class SolutionServiceImpl implements ISolutionService {
 
         SolutionRepo solutionRepo;
     @Override
-    public SolutionDto saveSolution (SolutionReq solutionReq) throws SolutionException,ServiceException {
+    public SolutionDto saveSolution (SolutionReq solutionReq) throws SolutionException, ServiceeException {
         Optional<Servicee> servicee = serviceRepo.findById(solutionReq.getServiceId());
 
         if(servicee.isPresent())
@@ -215,16 +150,16 @@ public class SolutionServiceImpl implements ISolutionService {
             Solution save = solutionRepo.save(solutionMapper.fromSolutionDTO(solutionDto));
             return solutionMapper.fromSolution(save);
         } else {
-            throw new ServiceException("Entreprise not found");
+            throw new ServiceeException(serviceNotFound);
         }
-        }
+    }
 
     @Override
-    public SolutionDto updateSolution (SolutionReq solutionReq) throws SolutionException,ServiceException {
+    public SolutionDto updateSolution (SolutionReq solutionReq) throws SolutionException, ServiceeException {
         Solution solution = solutionRepo.findById(solutionReq.getServiceId()).orElse(null);
 
         if(solution==null){
-            throw new SolutionException("Solution not found");
+            throw new SolutionException(serviceNotFound);
         }else{
             Optional<Servicee> servicee = serviceRepo.findById(solutionReq.getId());
 
@@ -238,10 +173,10 @@ public class SolutionServiceImpl implements ISolutionService {
                 Solution save = solutionRepo.save(solutionMapper.fromSolutionDTO(solutionDto));
                 return solutionMapper.fromSolution(save);
             } else {
-                throw new ServiceException("Entreprise not found");
+                throw new ServiceeException("Service not found");
             }
         }
-        }
+    }
 
     @Override
     public SolutionDto getSolutionById (Long idSolution) throws SolutionException {
@@ -250,7 +185,6 @@ public class SolutionServiceImpl implements ISolutionService {
         SolutionDto solutionDto= solutionMapper.fromSolution(solution);
         return solutionDto;
     }
-
 
     @Override
     public Page<Solution> getAllSolution ( int page, int size){

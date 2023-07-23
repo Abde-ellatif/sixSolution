@@ -13,7 +13,6 @@ import com.solution.sixsolutions.entity.Stagaire;
 import com.solution.sixsolutions.mapper.IPersonnellesMapper;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import com.solution.sixsolutions.mapper.PersonnellesMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -117,7 +116,7 @@ public class PersonnellesServiceImp implements IPersonnellesService{
         RScientifique rScientifique = rScientifiqueRepo.findById(rScientifiqueReq.getPersonnellesId()).orElse(null);
 
         if(rScientifique==null){
-            throw new RScientifiqueException("Bourse not found");
+            throw new RScientifiqueException("Recherche scientifique not found");
         }else{
             Optional<Personnelles> personnelles = personnellesRepo.findById(rScientifiqueReq.getPersonnellesId());
             if(personnelles.isPresent())

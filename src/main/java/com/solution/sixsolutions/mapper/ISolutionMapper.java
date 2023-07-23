@@ -16,7 +16,5 @@ public interface ISolutionMapper {
 
     SolutionDto fromSolution(Solution solution);
     Solution fromSolutionDTO(SolutionDto solutionDto);
-//
-//    SolutionInformationDto fromSolutionInformation(SolutionInformation solutionInformation);
-//    SolutionInformation fromSolutionInformationDTO(SolutionInformationDto solutionInformationDto);
+
 }

@@ -1,11 +1,6 @@
 package com.solution.sixsolutions.entity;
 
-//import jakarta.persistence.Entity;
-//import jakarta.persistence.GeneratedValue;
-//import jakarta.persistence.GenerationType;
-//import jakarta.persistence.Id;
-//import jakarta.persistence.JoinColumn;
-//import jakarta.persistence.OneToOne;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,8 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+
+
 import javax.persistence.Table;
 
 @Entity
@@ -27,7 +22,7 @@ import javax.persistence.Table;
 @Table(name = "entreprise")
 public class Entreprise {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nameEntreprise;
     private String description;
@@ -37,4 +32,5 @@ public class Entreprise {
     private String telephone;
     private String fix;
     private String fax;
+
 }

@@ -12,14 +12,6 @@ import com.solution.sixsolutions.entity.RScientifique;
 import org.springframework.data.domain.Page;
 
 public interface IPersonnellesService {
-    //Personne
-
-
-//    Personne savePersonne(Personne personne) throws PersonnellesException;
-//    Personne updatePersonne(Personne personne) throws PersonnellesException;
-//    Personne getPersonneById(Long idPersonne) throws PersonnellesException;
-//    Page<Personne> getAllPersonne(int page, int size);
-
     //Personnelles
 
     PersonnellesDto savePersonnelles(PersonnellesDto personnellesDto) throws PersonnellesException;

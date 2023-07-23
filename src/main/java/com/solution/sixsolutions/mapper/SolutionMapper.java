@@ -15,7 +15,7 @@ public class SolutionMapper implements ISolutionMapper{
     public EntrepriseDto fromEntreprise(Entreprise entreprise) {
         EntrepriseDto entrepriseDto=new EntrepriseDto();
         BeanUtils.copyProperties(entreprise,entrepriseDto);
-        //entrepriseDto.setSolutionInformationId(this.fromSolutionInformation(entreprise.getSolutionInformationId()));
+
         return entrepriseDto;
     }
 
@@ -23,7 +23,7 @@ public class SolutionMapper implements ISolutionMapper{
     public Entreprise fromEntrepriseDTO(EntrepriseDto entrepriseDto) {
         Entreprise entreprise=new Entreprise();
         BeanUtils.copyProperties(entrepriseDto,entreprise);
-        //entreprise.setSolutionInformationId(this.fromSolutionInformationDTO(entrepriseDto.getSolutionInformationId()));
+
         return entreprise;
     }
 
@@ -39,7 +39,7 @@ public class SolutionMapper implements ISolutionMapper{
         Servicee servicee=new Servicee();
         BeanUtils.copyProperties(serviceeDto,servicee);
         servicee.setEntreprise(this.fromEntrepriseDTO(serviceeDto.getEntrepriseDto()));
-        return null;
+        return servicee;
     }
 
     @Override
@@ -58,17 +58,5 @@ public class SolutionMapper implements ISolutionMapper{
         return solution;
     }
 
-//    @Override
-//    public SolutionInformationDto fromSolutionInformation(SolutionInformation solutionInformation) {
-//        SolutionInformationDto solutionInformationDto=new SolutionInformationDto();
-//        BeanUtils.copyProperties(solutionInformation,solutionInformationDto);
-//        return solutionInformationDto;
-//    }
-//
-//    @Override
-//    public SolutionInformation fromSolutionInformationDTO(SolutionInformationDto solutionInformationDto) {
-//        SolutionInformation solutionInformation= new SolutionInformation();
-//        BeanUtils.copyProperties(solutionInformationDto,solutionInformation);
-//        return solutionInformation;
-//    }
+
 }

@@ -1,10 +1,8 @@
 package com.solution.sixsolutions.mapper;
 
-import com.solution.sixsolutions.dto.PersonneDto;
 import com.solution.sixsolutions.dto.PersonnellesDto;
 import com.solution.sixsolutions.dto.RScientifiqueDto;
 import com.solution.sixsolutions.dto.StagaireDto;
-import com.solution.sixsolutions.entity.Personne;
 import com.solution.sixsolutions.entity.Personnelles;
 import com.solution.sixsolutions.entity.RScientifique;
 import com.solution.sixsolutions.entity.Stagaire;
@@ -13,19 +11,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class PersonnellesMapper implements IPersonnellesMapper{
-//    @Override
-//    public PersonneDto fromPersonne(Personne personne) {
-//        PersonneDto personneDto=new PersonneDto();
-//        BeanUtils.copyProperties(personne,personneDto);
-//        return personneDto;
-//    }
 
-//    @Override
-//    public Personne fromPersonneDTO(PersonneDto personneDto) {
-//        Personne personne=new Personne();
-//        BeanUtils.copyProperties(personneDto,personne);
-//        return personne;
-//    }
+
+
 
     @Override
     public PersonnellesDto fromPersonnelles(Personnelles personnelles) {
@@ -44,7 +32,7 @@ public class PersonnellesMapper implements IPersonnellesMapper{
     @Override
     public StagaireDto fromStagaire(Stagaire stagaire) {
         StagaireDto stagaireDto=new StagaireDto();
-        BeanUtils.copyProperties(stagaireDto,stagaire);
+        BeanUtils.copyProperties(stagaire,stagaireDto);
         return  stagaireDto;
     }
 

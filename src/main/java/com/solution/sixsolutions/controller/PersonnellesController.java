@@ -1,6 +1,6 @@
 package com.solution.sixsolutions.controller;
 
-import com.solution.sixsolutions.dto.StagaireDto;
+import com.solution.sixsolutions.dto.PersonnellesDto;
 import com.solution.sixsolutions.exception.PersonnellesException;
 import com.solution.sixsolutions.service.IPersonnellesService;
 import lombok.AllArgsConstructor;
@@ -14,25 +14,26 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/sixsolution/stagaire")
-public class StagaireController {
+@RequestMapping("/sixsolution/personnelles")
+public class PersonnellesController {
+
     IPersonnellesService iPersonnellesService;
     @PostMapping("/add")
-    public StagaireDto saveStagaire(@RequestBody StagaireDto stagaireDto) throws PersonnellesException {
-        StagaireDto memo = iPersonnellesService.saveStagaire(stagaireDto);
+    public PersonnellesDto savePersonnelles(@RequestBody PersonnellesDto personnellesDto) throws PersonnellesException {
+        PersonnellesDto memo = iPersonnellesService.savePersonnelles(personnellesDto);
 
         return memo;
     }
 
     @GetMapping("{id}")
-    public StagaireDto getStagaireById(@PathVariable(value = "id") Long id) throws PersonnellesException {
-        StagaireDto memo = iPersonnellesService.getStagaireById(id);
+    public PersonnellesDto getPersonnellesById(@PathVariable(value = "id") Long id) throws PersonnellesException {
+        PersonnellesDto memo = iPersonnellesService.getPersonnellesById(id);
         return memo;
     }
 
     @PutMapping("/update")
-    public StagaireDto updateStagaire(@RequestBody StagaireDto stagaireDto) throws PersonnellesException{
-        StagaireDto memo = iPersonnellesService.updateStagaire(stagaireDto);
+    public PersonnellesDto updatePersonnelles(@RequestBody PersonnellesDto personnellesDto) throws PersonnellesException{
+        PersonnellesDto memo = iPersonnellesService.updatePersonnelles(personnellesDto);
         return memo;
     }
 }
